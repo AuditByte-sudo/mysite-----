@@ -1,0 +1,43 @@
+<h2>조회 결과</h2>
+<p>기업명: {{ corp_name }}</p>
+<p>조회기간: 최근 {{ period }}년</p>
+<p>기업 고유번호 : {{ corp_code }}</p>
+<hr>
+
+<h3>1. 최근 사업보고서 </h3>
+<ul>
+<li> 보고서 이름 : {{ report_nm }}</li>
+<li> 발행일 : {{ rcept_dt }} </li>
+<li> 사업보고서 링크 : <a href="{{ report_url }}" target="_blank">{{ report_url }}</a> </li>
+</ul>
+
+<h3>2. IR 자료 </h3>
+<ul>
+<li>IR 자료 링크 : <a href="{{ ir_url }}" target="_blank">{{ ir_url }}</a>  </li>
+</ul>
+
+<h3>3. 최근 {{ period }}년 간 단일회사 주요 재무지표</h3>
+{% for name, table in tables.items %}
+  <button class="btn btn-outline-primary my-2" onclick="toggleTable('table{{ forloop.counter }}')">
+    {{ name }} 보기/숨기기
+  </button>
+  <br>
+  <div id="table{{ forloop.counter }}" style="display: none; " class="mb-4">
+    <style>
+      table.table th, table.table td {
+        width: 200px;
+        text-align: center;
+        vertical-align: middle;
+        }
+    </style>
+    {{ table|safe }}
+  </div>
+  <br><br>
+{% endfor %}
+
+<script>
+  function toggleTable(id) {
+    const el = document.getElementById(id);
+    el.style.display = (el.style.display === 'none') ? 'block' : 'none';
+  }
+</script>

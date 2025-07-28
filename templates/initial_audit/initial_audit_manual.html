@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title> 초도감사 패키지에 오신 것을 환영합니다.</title>
+</head>
+
+<body>
+<h2> 초도감사 패키지에 오신 것을 환영합니다. </h2>
+<em>
+<p> 이 서비스는 조회한 기업의 최근 N년 간 정보를 제공합니다. </p>
+<p> DART에서 검색되는 이름을 정확히 입력해주세요.</p>
+</em>
+<hr>
+
+<ol>
+  <strong><li> 최근 사업보고서 </li></strong>
+  <ul>
+    <li> 기업의 최근 사업보고서를 검색하여 DART의 사업보고서 링크를 제공합니다. </li>
+  </ul>
+  <strong><li> IR자료 </li></strong>
+  <ul>
+    <li> 한국거래소의 기업공시 사이트 KIND의 IR자료실에 업로드된 기업의 IR 자료를 제공합니다. </li>
+  </ul>
+  <strong><li> 주요 재무지표 </li></strong>
+  <ul>
+    <li> 최근 N년 간 기업의 주요 재무지표를 제공합니다. </li>
+    <li> DART API는 2023년 3분기 이후 부터 해당 정보를 제공하고 있습니다.</li>
+  </ul>
+</ol>
+<hr>
+
+<h3> 기업 조회하기 </h3>
+<form action="{% url 'initial_audit:view' %}" method="get">
+  <label for="corp_name">기업명:</label>
+  <input type="text" id="corp_name" name="corp_name" required>
+
+  <label for="period">조회기간:</label>
+  <select id="period" name="period">
+    <option value="1">1년</option>
+    <option value="2">2년</option>
+    <option value="3">3년</option>
+    <option value="4">4년</option>
+    <option value="5">5년</option>
+
+  </select>
+
+  <button type="submit">조회</button>
+</form>
+</body>
+</html>
